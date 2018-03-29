@@ -60,3 +60,6 @@ eg.
 `name, date, temp = 'Julie', 'Saturday', '75'`
 
 `'Hello! %s, today is %s and it is %s degree in the forecast.' % (name, date, temp)`
+---
+
+You can use `r''`, call a raw string type to a string. So when you use a `'\'`, it usually means you're escaping something but `r''` will treat it as just a string literal
