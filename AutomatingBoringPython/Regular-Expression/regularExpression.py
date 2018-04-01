@@ -2,7 +2,7 @@
 
 '''
 Regular Expression Basic #1
-Finding if a phone number exist in a string
+Regex Group and Pipe Character
 '''
 
 import re
@@ -10,6 +10,10 @@ import re
 message = 'Call me at 111-222-3333 tomorrow, or at 444-555-6666'
 
 def findingValidNumber(message):
+    '''
+    Finding if a phone number exist in a string
+    '''
+
     #Phone number in US are typically 3 area code num, follow by - ,follow by 3 num, follow by - ,follow by 4 num.
     #eg. xxx-xxx-xxx
     #Line below will look for this pattern and return it as a regular expression object
@@ -25,11 +29,12 @@ def findingValidNumber(message):
     print(matched1)
 
 
-'''
-More complex pattern matching
-'''
 
 def subSection(message):
+    '''
+    More complex pattern matching, finding sub section of a pattern
+    '''
+
     #You can use parenthesis to get area code or just a subsection of the phone numbers
     phoneNumRegex = re.compile(r'(\d\d\d)-(\d\d\d-\d\d\d\d)')
     matched = phoneNumRegex.search(message)
@@ -42,11 +47,12 @@ def subSection(message):
     #You can use '\(' or '\)' to match literal parenthesis
 
 
-'''
-Using pipes to match one of many pattern
-'''
 
 def pipeOperator():
+    '''
+    Using pipes to match one of many pattern
+    '''
+
     #using pipe character (or operator) to find anything with 'Bat'
     batRegex = re.compile(r'Bat(man|mobile|copter|bat)')
     matched3 = batRegex.search('Batman is an orphan')
