@@ -32,4 +32,4 @@
 
 ## Control Browser with Selenium Module
 
-* You need to do `from selenium import webdriver` to use this module
+* You must use `from selenium import webdriver` to use this module
