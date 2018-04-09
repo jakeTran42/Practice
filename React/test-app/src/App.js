@@ -12,7 +12,8 @@ class App extends Component {
       { name: 'Zero Two' || 'Goro', code: '002' },
       { name: 'Hiro', code: '016' },
       { name: 'Ichigo', code: '015' }
-    ]
+    ],
+    showChars: false
   }
 
   switchNameHandler = (newCharacter) => {
@@ -37,6 +38,15 @@ class App extends Component {
     })
   }
 
+  toggleCharHandler = () => {
+    const doesShow = this.state.showChars;
+    this.setState(
+      {
+        showChars: !doesShow
+      }
+    );
+  }
+
   render() {
 
     {/* This is Inline Style */}
@@ -50,6 +60,7 @@ class App extends Component {
 
     return (
       <div className="App">
+
         <header className="App-header">
           <img src={sharingan} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
@@ -59,11 +70,16 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <button style={style} onClick={() => this.switchNameHandler('Goro')}>Switch Character</button>
+        <button style={style} onClick={this.toggleCharHandler}>Show Character</button>
 
-        <Hello name={this.state.characters[0].name} code={this.state.characters[0].code} click={this.switchNameHandler.bind(this, 'Ruko')} />
-        <Hello name={this.state.characters[1].name} code={this.state.characters[1].code} changeName={this.nameChangeHandler} />
-        <Hello name={this.state.characters[2].name} code={this.state.characters[2].code} />
+        {this.state.showChars ?
+        <div>
+          <Hello name={this.state.characters[0].name} code={this.state.characters[0].code} click={this.switchNameHandler.bind(this, 'Ruko')} />
+          <Hello name={this.state.characters[1].name} code={this.state.characters[1].code} changeName={this.nameChangeHandler} />
+          <Hello name={this.state.characters[2].name} code={this.state.characters[2].code} />
+        </div> : null
+        }
+
       </div>
     );
   }
