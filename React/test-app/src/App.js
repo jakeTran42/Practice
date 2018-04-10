@@ -58,6 +58,18 @@ class App extends Component {
       cursor: 'pointer'
     }
 
+    let showCharacters = null
+
+    if (this.state.showChars) {
+      showCharacters = (
+        <div>
+          {this.state.characters.map(e => {
+            return <Hello name={e.name} code={e.code} />
+          })}
+        </div>
+      )
+    }
+
     return (
       <div className="App">
 
@@ -72,13 +84,7 @@ class App extends Component {
 
         <button style={style} onClick={this.toggleCharHandler}>Show Character</button>
 
-        {this.state.showChars ?
-        <div>
-          <Hello name={this.state.characters[0].name} code={this.state.characters[0].code} click={this.switchNameHandler.bind(this, 'Ruko')} />
-          <Hello name={this.state.characters[1].name} code={this.state.characters[1].code} changeName={this.nameChangeHandler} />
-          <Hello name={this.state.characters[2].name} code={this.state.characters[2].code} />
-        </div> : null
-        }
+        {showCharacters}
 
       </div>
     );
