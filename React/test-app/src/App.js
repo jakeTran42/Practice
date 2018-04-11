@@ -16,13 +16,20 @@ class App extends Component {
     showChars: false
   }
 
-  nameChangeHandler = (event) => {
+  nameChangeHandler = (event, id) => {
+
+    const personIndex = this.state.characters.findIndex(char => {
+      return char.id === id;
+    })
+
+    const person = {...this.state.characters[personIndex]}
+    person.name =  event.target.value
+    
+    const persons = [...this.state.characters]
+    persons[personIndex] = person
+
     this.setState({
-      characters: [
-        { name: 'Goro', code: '056' },
-        { name: event.target.value, code: '196' },
-        { name: 'Futoshi', code: '214' }
-      ]
+      characters: persons
     })
   }
 
@@ -61,6 +68,8 @@ class App extends Component {
           name={e.name}
           code={e.code}
           key={e.id}
+          changeName={(event) => this.nameChangeHandler(event, e.id)}
+
       />)
     })
 
