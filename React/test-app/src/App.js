@@ -9,23 +9,11 @@ class App extends Component {
 
   state = {
     characters: [
-      { name: 'Zero Two' || 'Goro', code: '002' },
-      { name: 'Hiro', code: '016' },
-      { name: 'Ichigo', code: '015' }
+      { id: 1, name: 'Zero Two' || 'Goro', code: '002' },
+      { id: 2, name: 'Hiro', code: '016' },
+      { id: 3, name: 'Ichigo', code: '015' }
     ],
     showChars: false
-  }
-
-  switchNameHandler = (newCharacter) => {
-    {/* DO NOT DO THIS WAY, SHOULD NOT MUTATE STATE THIS WAY this.state.person[0].name = 'Kokoro' */}
-
-    this.setState({
-      characters: [
-        { name: newCharacter, code: '056' },
-        { name: 'Ikuno', code: '196' },
-        { name: 'Futoshi', code: '214' }
-      ]
-    })
   }
 
   nameChangeHandler = (event) => {
@@ -47,6 +35,12 @@ class App extends Component {
     );
   }
 
+  deleteCharHandler = (charIndex) => {
+    const theseCharacters = this.state.characters.slice();
+    theseCharacters.splice(charIndex, 1);
+    this.setState({characters: theseCharacters})
+  }
+
   render() {
 
     {/* This is Inline Style */}
@@ -60,12 +54,20 @@ class App extends Component {
 
     let showCharacters = null
 
+    const renderChar = this.state.characters.map((e, index) => {
+      return (
+      <Hello
+          click={() => this.deleteCharHandler(index)}
+          name={e.name}
+          code={e.code}
+          key={e.id}
+      />)
+    })
+
     if (this.state.showChars) {
       showCharacters = (
         <div>
-          {this.state.characters.map(e => {
-            return <Hello name={e.name} code={e.code} />
-          })}
+          {renderChar}
         </div>
       )
     }
