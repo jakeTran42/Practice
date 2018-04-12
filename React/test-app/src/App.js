@@ -4,7 +4,7 @@ import z2 from './z2icon.ico';
 import sharingan from './tomoe.png';
 import Hello from './TestCom/Hello';
 
-import './App.css';
+import classes from'./App.css';
 
 class App extends Component {
 
@@ -52,15 +52,9 @@ class App extends Component {
   render() {
 
     {/* This is Inline Style */}
-    const style = {
-      backgroundColor: 'green',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-    };
 
     let showCharacters = null
+    let BtnClass = '';
 
     const renderChar = this.state.characters.map((e, index) => {
       return (
@@ -80,35 +74,35 @@ class App extends Component {
           {renderChar}
         </div>
       );
-
-      style.backgroundColor = 'red';
+      
+      BtnClass = classes.Red
     }
 
-    let classes = [];
+    let assignedClasses = [];
 
     if (this.state.characters.length <= 2) {
-      classes.push('red');
+      assignedClasses.push(classes.red);
     }
     if (this.state.characters.length <= 1) {
-      classes.push('bold');
+      assignedClasses.push(classes.bold);
     }
 
     return (
     
-      <div className="App">
+      <div className={classes.App}>
 
-        <header className="App-header">
-          <img src={sharingan} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+        <header className={classes.header}>
+          <img src={sharingan} className={classes.logo} alt="logo" />
+          <h1 className={classes.title}>Welcome to React</h1>
         </header>
 
-        <p className="App-intro">
+        <p className={classes.intro}>
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <p className={classes.join(' ')}>This will turn red!</p>
+        <p className={assignedClasses.join(' ')}>This will turn red!</p>
 
-        <button style={style} onClick={this.toggleCharHandler}>Show Character</button>
+        <button className={BtnClass} onClick={this.toggleCharHandler}>Show Character</button>
 
         {showCharacters}
 
