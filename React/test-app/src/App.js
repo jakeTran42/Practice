@@ -4,8 +4,6 @@ import z2 from './z2icon.ico';
 import sharingan from './tomoe.png';
 import Hello from './TestCom/Hello';
 
-import Radium, { StyleRoot } from 'radium';
-
 import './App.css';
 
 class App extends Component {
@@ -60,10 +58,6 @@ class App extends Component {
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
     };
 
     let showCharacters = null
@@ -88,10 +82,6 @@ class App extends Component {
       );
 
       style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'purple',
-        color: 'black'
-      }
     }
 
     let classes = [];
@@ -104,28 +94,28 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
+    
+      <div className="App">
 
-          <header className="App-header">
-            <img src={sharingan} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-          </header>
+        <header className="App-header">
+          <img src={sharingan} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
 
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
 
-          <p className={classes.join(' ')}>This will turn red!</p>
+        <p className={classes.join(' ')}>This will turn red!</p>
 
-          <button style={style} onClick={this.toggleCharHandler}>Show Character</button>
+        <button style={style} onClick={this.toggleCharHandler}>Show Character</button>
 
-          {showCharacters}
+        {showCharacters}
 
-        </div>
-      </StyleRoot>
+      </div>
+      
     );
   }
 }
 
-export default Radium(App);
+export default App;
