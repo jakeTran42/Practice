@@ -13,7 +13,7 @@ class App extends Component {
       { id: 2, name: 'Hiro', code: '016' },
       { id: 3, name: 'Ichigo', code: '015' }
     ],
-    showChars: false
+    showChars: true
   }
 
   nameChangeHandler = (event, id) => {
@@ -24,7 +24,7 @@ class App extends Component {
 
     const person = {...this.state.characters[personIndex]}
     person.name =  event.target.value
-    
+
     const persons = [...this.state.characters]
     persons[personIndex] = person
 
@@ -52,9 +52,9 @@ class App extends Component {
 
     {/* This is Inline Style */}
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
       font: 'inherit',
-      border: '2px solid blue',
+      border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer'
     }
@@ -79,6 +79,16 @@ class App extends Component {
           {renderChar}
         </div>
       )
+      style.backgroundColor = 'red'
+    }
+
+    let classes = [];
+
+    if (this.state.characters.length <= 2) {
+      classes.push('red');
+    }
+    if (this.state.characters.length <= 1) {
+      classes.push('bold');
     }
 
     return (
@@ -92,6 +102,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+
+        <p className={classes.join(' ')}>This will turn red!</p>
 
         <button style={style} onClick={this.toggleCharHandler}>Show Character</button>
 
