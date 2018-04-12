@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import z2 from './z2icon.ico';
 import sharingan from './tomoe.png';
 import Hello from './TestCom/Hello';
+import ErrorBoundary from './ErrorHandling/ErrorBoundary';
 
 import classes from'./App.css';
 
@@ -58,14 +59,16 @@ class App extends Component {
 
     const renderChar = this.state.characters.map((e, index) => {
       return (
-      <Hello
-          click={() => this.deleteCharHandler(index)}
-          name={e.name}
-          code={e.code}
-          key={e.id}
-          changeName={(event) => this.nameChangeHandler(event, e.id)}
+        <ErrorBoundary key={e.id}>
+        <Hello
+            click={() => this.deleteCharHandler(index)}
+            name={e.name}
+            code={e.code}
+            firstEl={index}
+            changeName={(event) => this.nameChangeHandler(event, e.id)}
 
-      />)
+        />
+      </ErrorBoundary>)
     })
 
     if (this.state.showChars) {
