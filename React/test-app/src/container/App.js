@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import z2 from './z2icon.ico';
-import sharingan from './tomoe.png';
-import Hello from './TestCom/Hello';
-import ErrorBoundary from './ErrorHandling/ErrorBoundary';
+import logo from '../logo.svg';
+import z2 from '../z2icon.ico';
+import sharingan from '../tomoe.png';
+import Character from '../components/Characters/Character';
+import Cockpit from '../components/Cockpit/Cockpit';
+import ErrorBoundary from '../components/ErrorHandling/ErrorBoundary';
 
 import classes from'./App.css';
 
@@ -57,19 +58,12 @@ class App extends Component {
     let showCharacters = null
     let BtnClass = '';
 
-    const renderChar = this.state.characters.map((e, index) => {
-      return (
-        <ErrorBoundary key={e.id}>
-        <Hello
-            click={() => this.deleteCharHandler(index)}
-            name={e.name}
-            code={e.code}
-            firstEl={index}
-            changeName={(event) => this.nameChangeHandler(event, e.id)}
-
-        />
-      </ErrorBoundary>)
-    })
+    const renderChar =
+          <Character 
+          characters={this.state.characters}
+          delete={this.deleteCharHandler}
+          change={this.nameChangeHandler}
+          />
 
     if (this.state.showChars) {
       showCharacters = (
@@ -77,25 +71,15 @@ class App extends Component {
           {renderChar}
         </div>
       );
-      
-      BtnClass = classes.Red
     }
 
-    let assignedClasses = [];
-
-    if (this.state.characters.length <= 2) {
-      assignedClasses.push(classes.red);
-    }
-    if (this.state.characters.length <= 1) {
-      assignedClasses.push(classes.bold);
-    }
 
     return (
     
       <div className={classes.App}>
 
         <header className={classes.header}>
-          <img src={sharingan} className={classes.logo} alt="logo" />
+          <img src={z2} className={classes.logo} alt="logo" />
           <h1 className={classes.title}>Welcome to React</h1>
         </header>
 
@@ -103,12 +87,13 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <p className={assignedClasses.join(' ')}>This will turn red!</p>
-
-        <button className={BtnClass} onClick={this.toggleCharHandler}>Show Character</button>
-
+        <Cockpit
+          showChar={this.state.showChars}
+          characters={this.state.characters}
+          toggle={this.toggleCharHandler}
+        />
+        
         {showCharacters}
-
       </div>
       
     );
