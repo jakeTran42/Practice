@@ -9,7 +9,7 @@ const hello = (props) => {
       }
       <h2>This prop character is: [{props.name}] Code: [{props.code}]</h2>
       <input type='text' onChange={props.changeName} value={props.name} />
-    </div>
+    </div> 
   )
 }
 
